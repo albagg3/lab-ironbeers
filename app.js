@@ -43,10 +43,7 @@ app.get('/random-beer', (req, res) => {
     .then(responseFromAPI => {
       // your magic happens here
       console.log(responseFromAPI)
-      return responseFromAPI;
-    })
-    .then((randomBeer)=>{
-      const beerRandom = randomBeer[0] 
+      const beerRandom = responseFromAPI[0] 
       res.render('random-beer', beerRandom)
     })
     .catch(error => console.log(error));
@@ -57,15 +54,10 @@ app.get('/random-beer', (req, res) => {
 app.get('/beers/:id', (req, res) => {
   punkAPI
     .getBeer(req.params.id)
-    .then((response)=>{
-      console.log(response);
-      return response
-    })
     .then((beer)=>{
       const selectedBeer = beer[0];
       res.render('selected-beer', selectedBeer)
     })
-  // res.render('index');
 });
 
 
